@@ -31,7 +31,7 @@ public class Physques3 implements Serializable {
     // 問題の登録
     public static void init() {
         ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i <= 3; i++) {
+        for (int i = 0; i <= 2; i++) {
             list.add(i);
         }
         //listをシャッフル
@@ -40,8 +40,8 @@ public class Physques3 implements Serializable {
         int r=0;
 
         quizzes[list.get(r)] = new Physques3(list.get(r), "問", "", R.drawable.p7, new String[]{"(1)", "(2)", "(3)", "(4)"}, 0);
-        quizzes[list.get(r+1)] = new Physques3(list.get(r+1), "問", "", R.drawable.m8, new String[]{"(1)", "(2)", "(3)", "(4)"}, 1);
-        quizzes[list.get(r+2)] = new Physques3(list.get(r+2), "問", "", R.drawable.m9, new String[]{"(1)", "(2)", "(3)", "(4)"}, 0);
+        quizzes[list.get(r+1)] = new Physques3(list.get(r+1), "問", "", R.drawable.p8, new String[]{"(1)", "(2)", "(3)", "(4)"}, 1);
+        quizzes[list.get(r+2)] = new Physques3(list.get(r+2), "問", "", R.drawable.p9, new String[]{"(1)", "(2)", "(3)", "(4)"}, 0);
 
     }
 

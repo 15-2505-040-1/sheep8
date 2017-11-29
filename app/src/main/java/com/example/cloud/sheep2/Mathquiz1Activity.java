@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Mathquiz1Activity extends AppCompatActivity {
     private TextView tv_num;
@@ -23,12 +22,11 @@ public class Mathquiz1Activity extends AppCompatActivity {
     private Mathques1 quiz;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mathquiz1);
-
-
 
         // 画面上のウィジェットを取得しておく
         tv_num = (TextView) findViewById(R.id.q_string);
@@ -40,14 +38,10 @@ public class Mathquiz1Activity extends AppCompatActivity {
         for (int i = 0; i <= 3; i++) {
             list.add(i);
         }
-        //listをシャッフル
-        Collections.shuffle(list);
-        int i=0;
-
-        buttons[i] = (Button) findViewById(R.id.btn1);
-        buttons[i+1] = (Button) findViewById(R.id.btn2);
-        buttons[i+2] = (Button) findViewById(R.id.btn3);
-        buttons[i+3] = (Button) findViewById(R.id.btn4);
+        buttons[0] = (Button) findViewById(R.id.btn1);
+        buttons[1] = (Button) findViewById(R.id.btn2);
+        buttons[2] = (Button) findViewById(R.id.btn3);
+        buttons[3] = (Button) findViewById(R.id.btn4);
 
         result = (TextView) findViewById(R.id.result);
 

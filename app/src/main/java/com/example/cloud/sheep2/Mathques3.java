@@ -31,7 +31,7 @@ public class Mathques3 implements Serializable {
     // 問題の登録
     public static void init() {
         ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i <= 3; i++) {
+        for (int i = 0; i <= 2; i++) {
             list.add(i);
         }
         //listをシャッフル
