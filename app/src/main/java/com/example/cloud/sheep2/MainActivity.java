@@ -28,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
         mSoundId = mSoundPool.load(getApplicationContext(), R.raw.music, 0);
        // ((TextView)findViewById(textView)).setTypeface(Typeface.createFromAsset(getAssets(), "数式フォントver1.1.ttf"));
 
-
-
-        Quiz.init();
     }
     @Override
     protected void onResume() {
@@ -67,12 +64,7 @@ public class MainActivity extends AppCompatActivity {
         */
         Intent intent = new Intent(getApplication(), SubjectActivity.class);
         startActivity(intent);
-
     }
 
-    public void onTapped(View view2) {
-        Intent intent = new Intent(getApplication(), DatabaseActivity.class);
-        startActivity(intent);
-    }
 }
 

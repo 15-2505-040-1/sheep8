@@ -17,20 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QuizActivity" />
-        <activity android:name=".MathdifActivity" />
+        <activity android:name=".DifActivity" />
         <activity android:name=".SubjectActivity" />
-        <activity android:name=".PhysdifActivity" />
         <activity android:name=".EngdifActivity" />
-        <activity android:name=".Mathquiz1Activity" />
-        <activity android:name=".Mathquiz2Activity" />
-        <activity android:name=".Mathquiz3Activity" />
-        <activity android:name=".Physquiz1Activity" />
-        <activity android:name=".Physquiz2Activity" />
-        <activity android:name=".Physquiz3Activity" />
+        <activity android:name=".QuizActivity" />
         <activity android:name=".DataActivity" />
-        <activity android:name=".DatabaseActivity" />
-        <activity android:name=".ShowDatabase"></activity>
     </application>
 
 </manifest>
