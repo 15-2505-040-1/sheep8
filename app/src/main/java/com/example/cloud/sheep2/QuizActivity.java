@@ -22,6 +22,8 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
     private ImageView imageView;
     private Button[] buttons;
     private TextView result;
+    private ImageView maru;
+    private ImageView batu;
 
     private Button next;
 
@@ -33,6 +35,8 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
     private Physques3 quizp3;
 
     Global global;
+    Thread thread = null;
+
 
     private AlphaAnimation alpha1;
     private AlphaAnimation alpha2;
@@ -92,11 +96,14 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
 
             show();
         }
+        thread = new Thread();
+        thread.start();
+
     }
 
     // 表示に反映させる
     void show() {
-        if(global.m==1){
+        if (global.m == 1) {
             if (quizm1 != null) {
                 tv_num.setText(quizm1.q_string);
                 ques_num.setText(quizm1.question);
@@ -109,7 +116,7 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                 next.setVisibility(View.INVISIBLE);
             }
         }
-        if(global.m==2){
+        if (global.m == 2) {
             if (quizm2 != null) {
                 tv_num.setText(quizm2.q_string);
                 ques_num.setText(quizm2.question);
@@ -122,7 +129,7 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                 next.setVisibility(View.INVISIBLE);
             }
         }
-        if(global.m==3){
+        if (global.m == 3) {
             if (quizm3 != null) {
                 tv_num.setText(quizm3.q_string);
                 ques_num.setText(quizm3.question);
@@ -135,7 +142,7 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                 next.setVisibility(View.INVISIBLE);
             }
         }
-        if(global.x==1){
+        if (global.x == 1) {
             if (quizp1 != null) {
                 tv_num.setText(quizp1.q_string);
                 ques_num.setText(quizp1.question);
@@ -148,7 +155,7 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                 next.setVisibility(View.INVISIBLE);
             }
         }
-        if(global.x==2){
+        if (global.x == 2) {
             if (quizp2 != null) {
                 tv_num.setText(quizp2.q_string);
                 ques_num.setText(quizp2.question);
@@ -161,7 +168,7 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                 next.setVisibility(View.INVISIBLE);
             }
         }
-        if(global.x==3){
+        if (global.x == 3) {
             if (quizp3 != null) {
                 tv_num.setText(quizp3.q_string);
                 ques_num.setText(quizp3.question);
@@ -174,7 +181,6 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                 next.setVisibility(View.INVISIBLE);
             }
         }
-
     }
     public void answer(View view) {
 
@@ -182,8 +188,14 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
             if (global.m== 1) {
                 if (view.getId() == buttons[i].getId()) {
                     if (i == quizm1.answer_index) {
-                        result.setText("正解!");
-                        next.setVisibility(View.VISIBLE);
+
+                        if (quizm1 != null) {
+                            quizm1 = Mathques1.getQuiz(quizm1.q_num + 1);
+                            show();
+                        }
+                        else {
+                            finish(); // 最後の問題の時は移る先がないので一旦MainActivityに戻す
+                        }
 
                         if(judge==false) {
                             float q = y;
@@ -231,8 +243,7 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
 
                         judge=true;
                     } else {
-                        result.setText("不正解...");
-                        next.setVisibility(View.INVISIBLE);
+
 
                         if(judge==true) {
                             float q = x;

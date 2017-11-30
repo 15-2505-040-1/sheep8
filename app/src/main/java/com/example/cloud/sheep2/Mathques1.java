@@ -39,9 +39,9 @@ public class Mathques1 implements Serializable {
 
         int r=0;
 
-        quizzes[list.get(r)] = new Mathques1(list.get(r), "問", "", R.drawable.m1 , new String[]{"(1)", "(2)", "(3)", "(4)"}, 0);
-        quizzes[list.get(r+1)] = new Mathques1(list.get(r+1), "問", "", R.drawable.m2, new String[]{"(1)", "(2)", "(3)", "(4)"}, 2);
-        quizzes[list.get(r+2)] = new Mathques1(list.get(r+2), "問", "", R.drawable.m3, new String[]{"(1)", "(2)", "(3)", "(4)"}, 2);
+        quizzes[list.get(r)] = new Mathques1(list.get(r), "問", "現在のところ、火の使用が確認されているのはどの時代からか\n1.猿人\t2.新人\t3.原人\t4.旧人", R.drawable.m1 , new String[]{"(1)", "(2)", "(3)", "(4)"}, 0);
+        quizzes[list.get(r+1)] = new Mathques1(list.get(r+1), "問", "ああああああああああああああああああああ\nいいいいいいいいいいい", R.drawable.m2, new String[]{"(1)", "(2)", "(3)", "(4)"}, 2);
+        quizzes[list.get(r+2)] = new Mathques1(list.get(r+2), "問", "あああああああああああああああああああああ\nいいいいいいいいいいい", R.drawable.m3, new String[]{"(1)", "(2)", "(3)", "(4)"}, 2);
 
     }
 
