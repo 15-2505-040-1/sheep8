@@ -19,7 +19,7 @@ public class Mathques3 implements Serializable {
 
     private static Mathques3[] quizzes = new Mathques3[4]; // クイズの配列
 
-    private Mathques3(int q_num, String q_string, String question, int image, String[] choices, int answer_index) {
+    private Mathques3(int q_num,String question,  String[] choices, int answer_index) {
         this.q_num = q_num;
         this.q_string = q_string;
         this.question = question;
@@ -39,10 +39,10 @@ public class Mathques3 implements Serializable {
 
         int r=0;
 
-        quizzes[list.get(r)] = new Mathques3(list.get(r), "問", "", R.drawable.m7, new String[]{"(1)", "(2)", "(3)", "(4)"}, 3);
-        quizzes[list.get(r+1)] = new Mathques3(list.get(r+1), "問", "", R.drawable.m8, new String[]{"(1)", "(2)", "(3)", "(4)"}, 3);
-        quizzes[list.get(r+2)] = new Mathques3(list.get(r+2), "問", "", R.drawable.m9, new String[]{"(1)", "(2)", "(3)", "(4)"}, 1);
-        quizzes[list.get(r+3)] = new Mathques3(list.get(r+3), "問", "", R.drawable.m10, new String[]{"(1)", "(2)", "(3)", "(4)"}, 2);
+        quizzes[list.get(r)] = new Mathques3(list.get(r), "",new String[]{"(1)", "(2)", "(3)", "(4)"}, 3);
+        quizzes[list.get(r+1)] = new Mathques3(list.get(r+1), "", new String[]{"(1)", "(2)", "(3)", "(4)"}, 3);
+        quizzes[list.get(r+2)] = new Mathques3(list.get(r+2),"", new String[]{"(1)", "(2)", "(3)", "(4)"}, 1);
+        quizzes[list.get(r+3)] = new Mathques3(list.get(r+3), "", new String[]{"(1)", "(2)", "(3)", "(4)"}, 2);
 
     }
 

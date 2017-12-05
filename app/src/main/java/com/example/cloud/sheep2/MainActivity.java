@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     private AlphaAnimation alpha;
@@ -49,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
     public void openQuiz(View view1) {
 
         mSoundPool.play(mSoundId, 1.0F, 1.0F, 0, 0, 1.0F);
-    /*    Button bt = (Button)findViewById(R.id.button);
+        Button bt = (Button)findViewById(R.id.button);
         alpha=new AlphaAnimation(1,0);
-        scale=new ScaleAnimation(1,0,1,0,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+        scale=new ScaleAnimation(1,0,1,0, Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
         rotate = new RotateAnimation(0, 360,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         set.addAnimation(alpha);
         set.addAnimation(rotate);
@@ -61,8 +64,13 @@ public class MainActivity extends AppCompatActivity {
         rotate.setRepeatCount(0);
         rotate.setFillAfter(true);
         bt.startAnimation(set);
-        */
         Intent intent = new Intent(getApplication(), SubjectActivity.class);
+        startActivity(intent);
+
+    }
+
+    public void onTapped(View view1) {
+        Intent intent = new Intent(getApplication(), RealmActivity.class);
         startActivity(intent);
     }
 

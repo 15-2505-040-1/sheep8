@@ -4,7 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cloud.sheep2.Mathquiz1Activity">
+    tools:context="com.example.cloud.sheep2.QuizActivity">
+
+    <ImageView
+        android:id="@+id/back1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/back1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="368dp"
@@ -128,19 +139,19 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="-4dp">
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/q_string"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:text="第○問"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <ImageView
             android:id="@+id/flag_image"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:adjustViewBounds="true"
             android:background="@android:color/black"
             android:padding="1dp"
@@ -153,6 +164,7 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="問題文"
+            android:background="@color/rb_white"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </LinearLayout>

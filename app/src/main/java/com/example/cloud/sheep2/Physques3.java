@@ -19,7 +19,7 @@ public class Physques3 implements Serializable {
 
     private static Physques3[] quizzes = new Physques3[4]; // クイズの配列
 
-    private Physques3(int q_num, String q_string, String question, int image, String[] choices, int answer_index) {
+    private Physques3(int q_num,String question, String[] choices, int answer_index) {
         this.q_num = q_num;
         this.q_string = q_string;
         this.question = question;
@@ -39,9 +39,10 @@ public class Physques3 implements Serializable {
 
         int r=0;
 
-        quizzes[list.get(r)] = new Physques3(list.get(r), "問", "", R.drawable.p7, new String[]{"(1)", "(2)", "(3)", "(4)"}, 0);
-        quizzes[list.get(r+1)] = new Physques3(list.get(r+1), "問", "", R.drawable.p8, new String[]{"(1)", "(2)", "(3)", "(4)"}, 1);
-        quizzes[list.get(r+2)] = new Physques3(list.get(r+2), "問", "", R.drawable.p9, new String[]{"(1)", "(2)", "(3)", "(4)"}, 0);
+        quizzes[list.get(r)] = new Physques3(list.get(r), "", new String[]{"(1)", "(2)", "(3)", "(4)"}, 3);
+        quizzes[list.get(r+1)] = new Physques3(list.get(r+1), "",new String[]{"(1)", "(2)", "(3)", "(4)"}, 2);
+        quizzes[list.get(r+2)] = new Physques3(list.get(r+2), "", new String[]{"(1)", "(2)", "(3)", "(4)"}, 0);
+
 
     }
 

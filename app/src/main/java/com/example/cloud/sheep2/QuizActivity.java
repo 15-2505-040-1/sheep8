@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.animation.CycleInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
@@ -52,6 +53,7 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
     private RotateAnimation rotate1;
     private TranslateAnimation trans1;
 
+
     private float x=0.8f;
     private float y=1;
     private float n=1;
@@ -73,6 +75,9 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
         ques_num = (TextView)  findViewById(question);
         imageView = (ImageView) findViewById(R.id.flag_image);
         buttons = new Button[4];
+
+        maru=(ImageView) findViewById(R.id.maru);
+        batu=(ImageView) findViewById(R.id.batu);
 
         buttons[0] = (Button) findViewById(R.id.btn1);
         buttons[1] = (Button) findViewById(R.id.btn2);
@@ -103,6 +108,7 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
 
     // 表示に反映させる
     void show() {
+
         if (global.m == 1) {
             if (quizm1 != null) {
                 tv_num.setText(quizm1.q_string);
@@ -117,6 +123,13 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
             }
         }
         if (global.m == 2) {
+            ImageView img = (ImageView)findViewById(R.id.monster1);
+            ImageView imgb = (ImageView)findViewById(R.id.back1);
+          /*  Bitmap bmp1 = BitmapFactory.decodeResource(getResources(), R.drawable.monster2);
+            Bitmap bmp2 = BitmapFactory.decodeResource(getResources(), R.drawable.back2);
+            img.setImageBitmap(bmp1);
+            imgb.setImageBitmap(bmp2);
+            */
             if (quizm2 != null) {
                 tv_num.setText(quizm2.q_string);
                 ques_num.setText(quizm2.question);
@@ -184,64 +197,36 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
     }
     public void answer(View view) {
 
+        int t1=0;
         for (int i = 0; i < buttons.length; i++) {
             if (global.m== 1) {
                 if (view.getId() == buttons[i].getId()) {
+
                     if (i == quizm1.answer_index) {
 
+                        if(t1==0) {
+                            AnimationSet s1 = new AnimationSet(true);
+                            al1 = new AlphaAnimation(0, 1);
+                            //al1.setInterpolator(new CycleInterpolator(1));
+                            //rotate1.setRepeatCount(Animation.INFINITE);
+
+                            s1.addAnimation(al1);
+                            s1.setDuration(1200);
+                            s1.setInterpolator(new CycleInterpolator(4));
+
+                            maru.startAnimation(s1);
+                        }
+
                         if (quizm1 != null) {
+
                             quizm1 = Mathques1.getQuiz(quizm1.q_num + 1);
+
                             show();
                         }
                         else {
                             finish(); // 最後の問題の時は移る先がないので一旦MainActivityに戻す
                         }
 
-                        if(judge==false) {
-                            float q = y;
-                            y = x;
-                            x = q;
-                            n = m;
-                            set2.setFillAfter(false);
-                            set1.setFillAfter(false);
-                            //    q = b;
-                            //    b = a;
-                            //    a = q;
-                        }
-                        ImageView img = (ImageView)findViewById(R.id.monster1);
-                        alpha1 = new AlphaAnimation(x, y);
-                        scale1 = new ScaleAnimation(n, l, n, l, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-                        //translate1 = new TranslateAnimation(0, 0, b, a);
-                        set1.addAnimation(alpha1);
-                        set1.addAnimation(scale1);
-                        //set1.addAnimation(translate1);
-                        set1.setDuration(1000);
-                        set1.setFillAfter(true);
-                        img.startAnimation(set1);
-                        //x=y;
-                        //y=y+0.2f;
-                        //n=l;
-                        //l=l-0.1f;
-                        //a=b;
-                        //b=b-5;
-                        if(x<=0.1 || y<=0.1){
-                            x=0.1f;
-                            y=0.1f;
-                            n=l;
-                            l=l-0.1f;
-                        }else if(n<=0.5 || l<=0.5){
-                            x=y;
-                            y=y+0.2f;
-                            n=0.5f;
-                            l=0.5f;
-                        }else{
-                            x=y;
-                            y=y+0.2f;
-                            n=l;
-                            l=l-0.1f;
-                        }
-
-                        judge=true;
                     } else {
 
 
