@@ -54,8 +54,8 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
     private RotateAnimation rotate1;
     private TranslateAnimation trans1;
 
-
     private int g=0;
+    private int q=0;
     private float x=0.8f;
     private float y=1;
     private float n=1;
@@ -122,6 +122,21 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
         }
     }
 
+    public class Tap implements Runnable{
+        public void run(){
+            for(int b=0;b<4;b++){
+                buttons[b].setEnabled(true);
+            }
+        }
+    }
+
+    public class Clear implements Runnable{
+        public void run(){
+            Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
+            startActivity(intent);
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,15 +182,19 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
 
     // 表示に反映させる
     void show() {
+        for(int b=0;b<4;b++){
+            buttons[b].setEnabled(true);
+        }
 
+        for (int i = 0; i < buttons.length; i++) {
+            buttons[i].setText(quizm1.choices[i]);
+            buttons[i].setTextColor(0xFF000000);
+        }
         if (global.m == 1) {
             if (quizm1 != null) {
                 tv_num.setText(quizm1.q_string);
                 ques_num.setText(quizm1.question);
                 imageView.setImageResource(quizm1.image);
-                for (int i = 0; i < buttons.length; i++) {
-                    buttons[i].setText(quizm1.choices[i]);
-                }
                 result.setText("");
 
                 next.setVisibility(View.INVISIBLE);
@@ -255,7 +274,9 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
         }
     }
     public void answer(View view) {
-
+        for(int b=0;b<4;b++){
+            buttons[b].setEnabled(false);
+        }
         int t1=0;
         for (int i = 0; i < buttons.length; i++) {
             if (global.m== 1) {
@@ -273,10 +294,10 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
 
                             quizm1 = Mathques1.getQuiz(quizm1.q_num + 1);
                             hdl2.postDelayed(new Seikai(), 1400);
-
+                            q++;
                         }
-                        else {
-                            finish();
+                        if(q==1){
+                            hdl.postDelayed(new Clear(),1000);
                         }
 
                     } else {
@@ -306,8 +327,19 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
 
                         batu.startAnimation(s1);
                         g++;
+
+                        buttons[quizm1.answer_index].setTextColor(0xFFFF4040);
                         if(g==3){
                             hdl.postDelayed(new Gameover(), 2000);
+                        }
+                        if (quizm1 != null) {
+
+                            quizm1 = Mathques1.getQuiz(quizm1.q_num + 1);
+                            hdl2.postDelayed(new Seikai(), 1200);
+
+                        }
+                        else {
+                            finish();
                         }
 
                     }

@@ -23,7 +23,8 @@
         <activity android:name=".QuizActivity" />
         <activity android:name=".DataActivity" />
         <activity android:name=".BokuActivity" />
-        <activity android:name=".RealmActivity"></activity>
+        <activity android:name=".RealmActivity" />
+        <activity android:name=".ResultActivity"></activity>
     </application>
 
 </manifest>
