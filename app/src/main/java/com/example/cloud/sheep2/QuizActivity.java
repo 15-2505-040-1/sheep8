@@ -2,6 +2,7 @@ package com.example.cloud.sheep2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -54,6 +55,7 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
     private TranslateAnimation trans1;
 
 
+    private int g=0;
     private float x=0.8f;
     private float y=1;
     private float n=1;
@@ -63,6 +65,63 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
     private float b=80;
     private boolean judge = true;
     //private ImageView img = (ImageView)findViewById(R.id.monster1);
+
+    private final Handler hdl = new Handler();
+    private final Handler hdl2 = new Handler();
+
+
+    public class Seikai implements Runnable{
+        public void run() {
+            show();
+        }
+    }
+
+    public class Huseikai implements Runnable{
+        public void run() {
+            ImageView img = (ImageView)findViewById(R.id.monster1);
+            alpha2 = new AlphaAnimation(y, x);
+            scale2 = new ScaleAnimation(n, m, n, m, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            //translate2 = new TranslateAnimation(0, 0, a, b);
+            set2.addAnimation(alpha2);
+            set2.addAnimation(scale2);
+            //set2.addAnimation(translate2);
+            set2.setDuration(1000);
+            set2.setFillAfter(true);
+            img.startAnimation(set2);
+            //x=y;
+            //y=y+0.2f;
+            //n=m;
+            //m=m+0.1f;
+            //a=b;
+            //b=b+5;
+            if(x>=1.0 || y>=1.0){
+                x=1.0f;
+                y=1.0f;
+                n=m;
+                m=m+0.1f;
+            }else if(n>=1.5 || m>=1.5){
+                x=y;
+                y=y+0.2f;
+                n=1.2f;
+                m=1.2f;
+            }else{
+                x=y;
+                y=y+0.2f;
+                n=m;
+                m=m+0.1f;
+            }
+        }
+
+    }
+
+    public class Gameover implements Runnable{
+        public void run() {
+            Intent intent = new Intent(QuizActivity.this, MainActivity.class);
+            startActivity(intent);
+            QuizActivity.this.finish();
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,28 +262,21 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                 if (view.getId() == buttons[i].getId()) {
 
                     if (i == quizm1.answer_index) {
-
-                        if(t1==0) {
-                            AnimationSet s1 = new AnimationSet(true);
-                            al1 = new AlphaAnimation(0, 1);
-                            //al1.setInterpolator(new CycleInterpolator(1));
-                            //rotate1.setRepeatCount(Animation.INFINITE);
-
-                            s1.addAnimation(al1);
-                            s1.setDuration(1200);
-                            s1.setInterpolator(new CycleInterpolator(4));
-
-                            maru.startAnimation(s1);
-                        }
+                        AnimationSet s1 = new AnimationSet(true);
+                        al1 = new AlphaAnimation(0, 1);
+                        s1.addAnimation(al1);
+                        s1.setDuration(900);
+                        s1.setInterpolator(new CycleInterpolator(3));
+                        maru.startAnimation(s1);
 
                         if (quizm1 != null) {
 
                             quizm1 = Mathques1.getQuiz(quizm1.q_num + 1);
+                            hdl2.postDelayed(new Seikai(), 1400);
 
-                            show();
                         }
                         else {
-                            finish(); // 最後の問題の時は移る先がないので一旦MainActivityに戻す
+                            finish();
                         }
 
                     } else {
@@ -241,39 +293,23 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                             //    a = b;
                             //    b = q;
                         }
-                        ImageView img = (ImageView)findViewById(R.id.monster1);
-                        alpha2 = new AlphaAnimation(y, x);
-                        scale2 = new ScaleAnimation(n, m, n, m, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-                        //translate2 = new TranslateAnimation(0, 0, a, b);
-                        set2.addAnimation(alpha2);
-                        set2.addAnimation(scale2);
-                        //set2.addAnimation(translate2);
-                        set2.setDuration(1000);
-                        set2.setFillAfter(true);
-                        img.startAnimation(set2);
-                        //x=y;
-                        //y=y+0.2f;
-                        //n=m;
-                        //m=m+0.1f;
-                        //a=b;
-                        //b=b+5;
-                        if(x>=1.0 || y>=1.0){
-                            x=1.0f;
-                            y=1.0f;
-                            n=m;
-                            m=m+0.1f;
-                        }else if(n>=1.5 || m>=1.5){
-                            x=y;
-                            y=y+0.2f;
-                            n=1.2f;
-                            m=1.2f;
-                        }else{
-                            x=y;
-                            y=y+0.2f;
-                            n=m;
-                            m=m+0.1f;
-                        }
+                        hdl.postDelayed(new Huseikai(),1000);
                         judge = false;
+                        AnimationSet s1 = new AnimationSet(true);
+                        al1 = new AlphaAnimation(0, 1);
+                        //al1.setInterpolator(new CycleInterpolator(1));
+                        //rotate1.setRepeatCount(Animation.INFINITE);
+
+                        s1.addAnimation(al1);
+                        s1.setDuration(900);
+                        s1.setInterpolator(new CycleInterpolator(3));
+
+                        batu.startAnimation(s1);
+                        g++;
+                        if(g==3){
+                            hdl.postDelayed(new Gameover(), 2000);
+                        }
+
                     }
                 }
             }
