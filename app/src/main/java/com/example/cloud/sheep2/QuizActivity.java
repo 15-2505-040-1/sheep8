@@ -186,11 +186,13 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
             buttons[b].setEnabled(true);
         }
 
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i].setText(quizm1.choices[i]);
-            buttons[i].setTextColor(0xFF000000);
-        }
+
+
         if (global.m == 1) {
+            for (int i = 0; i < buttons.length; i++) {
+                buttons[i].setText(quizm1.choices[i]);
+                buttons[i].setTextColor(0xFF000000);
+            }
             if (quizm1 != null) {
                 tv_num.setText(quizm1.q_string);
                 ques_num.setText(quizm1.question);
@@ -234,13 +236,14 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
             }
         }
         if (global.x == 1) {
+            for (int i = 0; i < buttons.length; i++) {
+                buttons[i].setText(quizp1.choices[i]);
+                buttons[i].setTextColor(0xFF000000);
+            }
             if (quizp1 != null) {
                 tv_num.setText(quizp1.q_string);
                 ques_num.setText(quizp1.question);
                 imageView.setImageResource(quizp1.image);
-                for (int i = 0; i < buttons.length; i++) {
-                    buttons[i].setText(quizp1.choices[i]);
-                }
                 result.setText("");
 
                 next.setVisibility(View.INVISIBLE);
@@ -277,7 +280,6 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
         for(int b=0;b<4;b++){
             buttons[b].setEnabled(false);
         }
-        int t1=0;
         for (int i = 0; i < buttons.length; i++) {
             if (global.m== 1) {
                 if (view.getId() == buttons[i].getId()) {
@@ -370,12 +372,67 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
             }
             if (global.x == 1) {
                 if (view.getId() == buttons[i].getId()) {
+
                     if (i == quizp1.answer_index) {
-                        result.setText("正解!");
-                        next.setVisibility(View.VISIBLE);
+                        AnimationSet s1 = new AnimationSet(true);
+                        al1 = new AlphaAnimation(0, 1);
+                        s1.addAnimation(al1);
+                        s1.setDuration(900);
+                        s1.setInterpolator(new CycleInterpolator(3));
+                        maru.startAnimation(s1);
+
+                        if (quizp1 != null) {
+
+                            quizp1 = Physques1.getQuiz(quizp1.q_num + 1);
+                            hdl2.postDelayed(new Seikai(), 1400);
+                            q++;
+                        }
+                        if(q==1){
+                            hdl.postDelayed(new Clear(),1000);
+                        }
+
                     } else {
-                        result.setText("不正解...");
-                        next.setVisibility(View.INVISIBLE);
+
+
+                        if(judge==true) {
+                            float q = x;
+                            x = y;
+                            y = q;
+                            n = l;
+                            set1.setFillAfter(false);
+                            set2.setFillAfter(false);
+                            //    q = a;
+                            //    a = b;
+                            //    b = q;
+                        }
+                        hdl.postDelayed(new Huseikai(),1000);
+                        judge = false;
+                        AnimationSet s1 = new AnimationSet(true);
+                        al1 = new AlphaAnimation(0, 1);
+                        //al1.setInterpolator(new CycleInterpolator(1));
+                        //rotate1.setRepeatCount(Animation.INFINITE);
+
+                        s1.addAnimation(al1);
+                        s1.setDuration(900);
+                        s1.setInterpolator(new CycleInterpolator(3));
+
+                        batu.startAnimation(s1);
+                        g++;
+
+                        buttons[quizp1.answer_index].setTextColor(0xFFFF4040);
+                        if(g==3){
+                            hdl.postDelayed(new Gameover(), 2000);
+                        }
+                        if (quizp1 != null) {
+
+                            quizp1 = Physques1.getQuiz(quizp1.q_num + 1);
+                            hdl2.postDelayed(new Seikai(), 1200);
+
+                        }
+                        else {
+                            finish();
+                        }
+
                     }
                 }
             }
