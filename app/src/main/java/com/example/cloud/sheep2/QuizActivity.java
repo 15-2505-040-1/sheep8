@@ -56,6 +56,7 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
 
     private int g=0;
     private int q=0;
+    private boolean clear=true;
     private float x=0.8f;
     private float y=1;
     private float n=1;
@@ -182,99 +183,105 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
 
     // 表示に反映させる
     void show() {
-        for(int b=0;b<4;b++){
-            buttons[b].setEnabled(true);
-        }
-
-
-
-        if (global.m == 1) {
-            for (int i = 0; i < buttons.length; i++) {
-                buttons[i].setText(quizm1.choices[i]);
-                buttons[i].setTextColor(0xFF000000);
+        if(clear==true){
+            for(int b=0;b<4;b++){
+                buttons[b].setEnabled(true);
             }
-            if (quizm1 != null) {
-                tv_num.setText(quizm1.q_string);
-                ques_num.setText(quizm1.question);
-                imageView.setImageResource(quizm1.image);
-                result.setText("");
 
-                next.setVisibility(View.INVISIBLE);
+
+
+            if (global.m == 1) {
+                for (int i = 0; i < buttons.length; i++) {
+                    buttons[i].setText(quizm1.choices[i]);
+                    buttons[i].setTextColor(0xFF000000);
+                }
+                if (quizm1 != null) {
+                    tv_num.setText(quizm1.q_string);
+                    ques_num.setText(quizm1.question);
+                    imageView.setImageResource(quizm1.image);
+                    result.setText("");
+
+                    next.setVisibility(View.INVISIBLE);
+                }
             }
-        }
-        if (global.m == 2) {
-            ImageView img = (ImageView)findViewById(R.id.monster1);
-            ImageView imgb = (ImageView)findViewById(R.id.back1);
+            if (global.m == 2) {
+                ImageView img = (ImageView)findViewById(R.id.monster1);
+                ImageView imgb = (ImageView)findViewById(R.id.back1);
           /*  Bitmap bmp1 = BitmapFactory.decodeResource(getResources(), R.drawable.monster2);
             Bitmap bmp2 = BitmapFactory.decodeResource(getResources(), R.drawable.back2);
             img.setImageBitmap(bmp1);
             imgb.setImageBitmap(bmp2);
             */
-            if (quizm2 != null) {
-                tv_num.setText(quizm2.q_string);
-                ques_num.setText(quizm2.question);
-                imageView.setImageResource(quizm2.image);
-                for (int i = 0; i < buttons.length; i++) {
-                    buttons[i].setText(quizm2.choices[i]);
+                if (quizm2 != null) {
+                    tv_num.setText(quizm2.q_string);
+                    ques_num.setText(quizm2.question);
+                    imageView.setImageResource(quizm2.image);
+                    for (int i = 0; i < buttons.length; i++) {
+                        buttons[i].setText(quizm2.choices[i]);
+                    }
+                    result.setText("");
+
+                    next.setVisibility(View.INVISIBLE);
                 }
-                result.setText("");
-
-                next.setVisibility(View.INVISIBLE);
             }
-        }
-        if (global.m == 3) {
-            if (quizm3 != null) {
-                tv_num.setText(quizm3.q_string);
-                ques_num.setText(quizm3.question);
-                imageView.setImageResource(quizm3.image);
-                for (int i = 0; i < buttons.length; i++) {
-                    buttons[i].setText(quizm3.choices[i]);
+            if (global.m == 3) {
+                if (quizm3 != null) {
+                    tv_num.setText(quizm3.q_string);
+                    ques_num.setText(quizm3.question);
+                    imageView.setImageResource(quizm3.image);
+                    for (int i = 0; i < buttons.length; i++) {
+                        buttons[i].setText(quizm3.choices[i]);
+                    }
+                    result.setText("");
+
+                    next.setVisibility(View.INVISIBLE);
                 }
-                result.setText("");
-
-                next.setVisibility(View.INVISIBLE);
             }
-        }
-        if (global.x == 1) {
-            for (int i = 0; i < buttons.length; i++) {
-                buttons[i].setText(quizp1.choices[i]);
-                buttons[i].setTextColor(0xFF000000);
-            }
-            if (quizp1 != null) {
-                tv_num.setText(quizp1.q_string);
-                ques_num.setText(quizp1.question);
-                imageView.setImageResource(quizp1.image);
-                result.setText("");
-
-                next.setVisibility(View.INVISIBLE);
-            }
-        }
-        if (global.x == 2) {
-            if (quizp2 != null) {
-                tv_num.setText(quizp2.q_string);
-                ques_num.setText(quizp2.question);
-                imageView.setImageResource(quizp2.image);
+            if (global.x == 1) {
                 for (int i = 0; i < buttons.length; i++) {
-                    buttons[i].setText(quizp2.choices[i]);
+                    buttons[i].setText(quizp1.choices[i]);
+                    buttons[i].setTextColor(0xFF000000);
                 }
-                result.setText("");
+                if (quizp1 != null) {
+                    tv_num.setText(quizp1.q_string);
+                    ques_num.setText(quizp1.question);
+                    imageView.setImageResource(quizp1.image);
+                    result.setText("");
 
-                next.setVisibility(View.INVISIBLE);
+                    next.setVisibility(View.INVISIBLE);
+                }
+            }
+            if (global.x == 2) {
+                if (quizp2 != null) {
+                    tv_num.setText(quizp2.q_string);
+                    ques_num.setText(quizp2.question);
+                    imageView.setImageResource(quizp2.image);
+                    for (int i = 0; i < buttons.length; i++) {
+                        buttons[i].setText(quizp2.choices[i]);
+                    }
+                    result.setText("");
+
+                    next.setVisibility(View.INVISIBLE);
+                }
+            }
+            if (global.x == 3) {
+                if (quizp3 != null) {
+                    tv_num.setText(quizp3.q_string);
+                    ques_num.setText(quizp3.question);
+                    imageView.setImageResource(quizp3.image);
+                    for (int i = 0; i < buttons.length; i++) {
+                        buttons[i].setText(quizp3.choices[i]);
+                    }
+                    result.setText("");
+
+                    next.setVisibility(View.INVISIBLE);
+                }
             }
         }
-        if (global.x == 3) {
-            if (quizp3 != null) {
-                tv_num.setText(quizp3.q_string);
-                ques_num.setText(quizp3.question);
-                imageView.setImageResource(quizp3.image);
-                for (int i = 0; i < buttons.length; i++) {
-                    buttons[i].setText(quizp3.choices[i]);
-                }
-                result.setText("");
-
-                next.setVisibility(View.INVISIBLE);
-            }
+        else{
+            clear=true;
         }
+
     }
     public void answer(View view) {
         for(int b=0;b<4;b++){
@@ -332,6 +339,7 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
 
                         buttons[quizm1.answer_index].setTextColor(0xFFFF4040);
                         if(g==3){
+                            clear=false;
                             hdl.postDelayed(new Gameover(), 2000);
                         }
                         if (quizm1 != null) {

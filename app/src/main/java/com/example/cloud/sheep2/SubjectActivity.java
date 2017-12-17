@@ -36,8 +36,8 @@ public class SubjectActivity extends AppCompatActivity {
         }
         if(view==findViewById(sub3)){
             global.sub=3;
-            Intent intent = new Intent(getApplication(), DifActivity.class);
-            startActivity(intent);
+            Intent intent = new Intent(getApplication(), BokuActivity.class);
+        startActivity(intent);
         }
     }
 }

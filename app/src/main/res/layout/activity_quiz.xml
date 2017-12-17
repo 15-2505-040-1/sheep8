@@ -166,7 +166,7 @@
             android:id="@+id/question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/rb_white"
+            android:background="@color/white"
             android:padding="5dp"
             android:text="問題文"
             android:textAppearance="?android:attr/textAppearanceMedium"

@@ -31,7 +31,7 @@ public class Physques1 implements Serializable {
     // 問題登録
     public static void init() {
         ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i <= 58; i++) {
+        for (int i = 0; i <= 59; i++) {
             list.add(i);
         }
         //listをシャッフル

@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.example.cloud.sheep2"
         minSdkVersion 16
@@ -13,11 +14,9 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            minifyEnabled true
         }
     }
 }
@@ -27,9 +26,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'io.realm:realm-android:0.80.3'
-    compile 'com.github.dmytrodanylyk.realm-browser:library:0.0.2'
+
+    compile 'com.android.support:design:26.+'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'io.realm:android-adapters:2.0.0'
     testCompile 'junit:junit:4.12'
 }

@@ -14,6 +14,10 @@ import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
+
 public class MainActivity extends AppCompatActivity {
     private AlphaAnimation alpha;
     private ScaleAnimation scale;
@@ -21,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     AnimationSet set=new AnimationSet(true);
     private SoundPool mSoundPool;
     private int mSoundId;
-
+    private Realm mRealm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +33,53 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mSoundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         mSoundId = mSoundPool.load(getApplicationContext(), R.raw.music, 0);
-       // ((TextView)findViewById(textView)).setTypeface(Typeface.createFromAsset(getAssets(), "数式フォントver1.1.ttf"));
+        // ((TextView)findViewById(textView)).setTypeface(Typeface.createFromAsset(getAssets(), "数式フォントver1.1.ttf"));
+        mRealm = Realm.getDefaultInstance();
+        RealmQuery<Item> query = mRealm.where(Item.class);
+        query.equalTo("name", "キノコ");
+        RealmResults<Item> result = query.findAll();
+        if(result.size() > 0) {
 
-    }
+        }else{
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Item.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Item item = realm.createObject(Item.class, new Long(nextId));
+                    item.setName("キノコ");
+                    item.setDetail("キノコだよ");
+                    item.setK(Integer.toString(0));
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Item.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Item item = realm.createObject(Item.class, new Long(nextId));
+                    item.setName("おもちゃ");
+                    item.setDetail("おもちゃだよ");
+                    item.setK(Integer.toString(0));
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Item.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Item item = realm.createObject(Item.class, new Long(nextId));
+                    item.setName("ハエ");
+                    item.setDetail("ハエだよ");
+                    item.setK(Integer.toString(0));
+                }
+            });
+        }
+
+        }
     @Override
     protected void onResume() {
         super.onResume();
@@ -66,11 +114,9 @@ public class MainActivity extends AppCompatActivity {
         bt.startAnimation(set);
         Intent intent = new Intent(getApplication(), SubjectActivity.class);
         startActivity(intent);
-
     }
-
     public void onTapped(View view1) {
-        Intent intent = new Intent(getApplication(), RealmActivity.class);
+        Intent intent = new Intent(getApplication(), DatabeseActivity.class);
         startActivity(intent);
     }
 

@@ -21,10 +21,18 @@
         <activity android:name=".SubjectActivity" />
         <activity android:name=".EngdifActivity" />
         <activity android:name=".QuizActivity" />
-        <activity android:name=".DataActivity" />
         <activity android:name=".BokuActivity" />
-        <activity android:name=".RealmActivity" />
-        <activity android:name=".ResultActivity"></activity>
+        <activity android:name=".ResultActivity" />
+        <activity
+            android:name=".DatabeseActivity"
+            android:label="@string/title_activity_item"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ItemEditActivity"
+            android:label="@string/title_activity_item_edit"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CanvasView" />
+        <activity android:name=".SampleSurfaceHolderCallback" />
     </application>
 
 </manifest>
