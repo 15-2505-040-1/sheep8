@@ -24,7 +24,7 @@
         <activity android:name=".BokuActivity" />
         <activity android:name=".ResultActivity" />
         <activity
-            android:name=".DatabeseActivity"
+            android:name=".DatabaseActivity"
             android:label="@string/title_activity_item"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -33,7 +33,16 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CanvasView" />
         <activity android:name=".SampleSurfaceHolderCallback" />
-        <activity android:name=".ShopActivity"></activity>
+        <activity android:name=".ShopActivity" />
+        <activity
+            android:name=".AnimalActivity"
+            android:label="@string/title_activity_animal"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AnimalEditActivity" />
+        <activity
+            android:name=".InventoryActivity"
+            android:label="@string/title_activity_inventory"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

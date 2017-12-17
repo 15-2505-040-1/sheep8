@@ -1,16 +1,22 @@
 package com.example.cloud.sheep2;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
+import static com.example.cloud.sheep2.R.id.animal;
 import static com.example.cloud.sheep2.R.id.item;
 
 public class ShopActivity extends AppCompatActivity {
@@ -19,8 +25,11 @@ public class ShopActivity extends AppCompatActivity {
     Button btn;
 
     Realm mRealm;
+    EditText mNameEdit;
 
-    int b=0;
+    String item1,item2,item3;
+    String type,name;
+    int a0=0,b0=0,c0=0,a1,b1,c1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,41 +38,337 @@ public class ShopActivity extends AppCompatActivity {
 
         mRealm=Realm.getDefaultInstance();
 
-        img=(ImageView) findViewById(R.id.animal) ;
+        img=(ImageView) findViewById(animal) ;
         txt=(TextView) findViewById(item);
+        btn=(Button) findViewById(R.id.tradebtn);
     }
 
     public void SHEEP(View view1) {
-        btn=(Button) findViewById(R.id.tradebtn);
         txt.setVisibility(View.VISIBLE);
-        txt.setText("生命の葉x1\n角x1");
+        txt.setText("生命の葉x1\n骨x1");
         btn.setVisibility(View.VISIBLE);
         img.setVisibility(View.VISIBLE);
 
+        Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.hitsuji2);
+        img.setImageBitmap(bmitem);
+
+        item1="葉っぱ";
+        item2="骨";
+        item3="NULL";
+
+        a0=1;
+        b0=1;
+        c0=0;
 
         RealmQuery<Item> query1 = mRealm.where(Item.class);
-        query1.equalTo("name", "葉っぱ");
+        query1.equalTo("name", item1);
         RealmResults<Item> result = query1.findAll();
         RealmQuery<Item> query2 = mRealm.where(Item.class);
-        query2.equalTo("name", "骨");
+        query2.equalTo("name", item2);
         RealmResults<Item> result2 = query2.findAll();
+        RealmQuery<Item> query3 = mRealm.where(Item.class);
+        query3.equalTo("name", item3);
+        RealmResults<Item> result3 = query3.findAll();
 
-        Item item=result.get(0);
+        Item item1=result.get(0);
         Item item2=result2.get(0);
-        item.getK();
+        Item item3=result3.get(0);
 
-        if(Integer.valueOf(item.getK()).intValue()>=1&&Integer.valueOf(item2.getK()).intValue()>=1){
+        a1=Integer.valueOf(item1.getK()).intValue();
+        b1=Integer.valueOf(item2.getK()).intValue();
+        c1=Integer.valueOf(item3.getK()).intValue();
+
+        if(a1>=a0&&b1>=b0&&c1>=c0){
             btn.setEnabled(true);
         }else{
             btn.setEnabled(false);
         }
 
+        type="羊";
+        name="羊";
 
-        b=1;
+
+    }
+
+    public void BLACK(View view1) {
+
+        Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.kurohiysuji);
+        img.setImageBitmap(bmitem);
+        txt.setVisibility(View.VISIBLE);
+        txt.setText("生命の葉x2\n骨x1\nチョコx1");
+        btn.setVisibility(View.VISIBLE);
+        img.setVisibility(View.VISIBLE);
+
+        item1="葉っぱ";
+        item2="骨";
+        item3="チョコ";
+
+        a0=2;
+        b0=1;
+        c0=1;
+
+        RealmQuery<Item> query1 = mRealm.where(Item.class);
+        query1.equalTo("name", item1);
+        RealmResults<Item> result = query1.findAll();
+        RealmQuery<Item> query2 = mRealm.where(Item.class);
+        query2.equalTo("name", item2);
+        RealmResults<Item> result2 = query2.findAll();
+        RealmQuery<Item> query3 = mRealm.where(Item.class);
+        query3.equalTo("name", item3);
+        RealmResults<Item> result3 = query3.findAll();
+
+        Item item1=result.get(0);
+        Item item2=result2.get(0);
+        Item item3=result3.get(0);
+
+        a1=Integer.valueOf(item1.getK()).intValue();
+        b1=Integer.valueOf(item2.getK()).intValue();
+        c1=Integer.valueOf(item3.getK()).intValue();
+
+        if(a1>=a0&&b1>=b0&&c1>=c0){
+            btn.setEnabled(true);
+        }else{
+            btn.setEnabled(false);
+        }
+        type="黒羊";
+        name="黒羊";
+
+
+    }
+
+    public void PIG(View view1) {
+        txt.setVisibility(View.VISIBLE);
+        txt.setText("生命の葉x3\n骨x1\nキノコx1");
+        btn.setVisibility(View.VISIBLE);
+        img.setVisibility(View.VISIBLE);
+
+        item1="葉っぱ";
+        item2="骨";
+        item3="キノコ";
+
+        a0=3;
+        b0=1;
+        c0=1;
+
+        RealmQuery<Item> query1 = mRealm.where(Item.class);
+        query1.equalTo("name", item1);
+        RealmResults<Item> result = query1.findAll();
+        RealmQuery<Item> query2 = mRealm.where(Item.class);
+        query2.equalTo("name", item2);
+        RealmResults<Item> result2 = query2.findAll();
+        RealmQuery<Item> query3 = mRealm.where(Item.class);
+        query3.equalTo("name", item3);
+        RealmResults<Item> result3 = query3.findAll();
+
+        Item item1=result.get(0);
+        Item item2=result2.get(0);
+        Item item3=result3.get(0);
+
+        a1=Integer.valueOf(item1.getK()).intValue();
+        b1=Integer.valueOf(item2.getK()).intValue();
+        c1=Integer.valueOf(item3.getK()).intValue();
+
+        if(a1>=a0&&b1>=b0&&c1>=c0){
+            btn.setEnabled(true);
+        }else{
+            btn.setEnabled(false);
+        }
+
+        type="豚";
+        name="豚";
+
+    }
+
+    public void CHICKEN(View view1) {
+        Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.niwatori);
+        img.setImageBitmap(bmitem);
+        txt.setVisibility(View.VISIBLE);
+        txt.setText("生命の葉x3\n卵x1\nラッパx1");
+        btn.setVisibility(View.VISIBLE);
+        img.setVisibility(View.VISIBLE);
+
+        item1="葉っぱ";
+        item2="卵";
+        item3="ラッパ";
+
+        a0=5;
+        b0=1;
+        c0=1;
+
+        RealmQuery<Item> query1 = mRealm.where(Item.class);
+        query1.equalTo("name", item1);
+        RealmResults<Item> result = query1.findAll();
+        RealmQuery<Item> query2 = mRealm.where(Item.class);
+        query2.equalTo("name", item2);
+        RealmResults<Item> result2 = query2.findAll();
+        RealmQuery<Item> query3 = mRealm.where(Item.class);
+        query3.equalTo("name", item3);
+        RealmResults<Item> result3 = query3.findAll();
+
+        Item item1=result.get(0);
+        Item item2=result2.get(0);
+        Item item3=result3.get(0);
+
+        a1=Integer.valueOf(item1.getK()).intValue();
+        b1=Integer.valueOf(item2.getK()).intValue();
+        c1=Integer.valueOf(item3.getK()).intValue();
+
+        if(a1>=a0&&b1>=b0&&c1>=c0){
+            btn.setEnabled(true);
+        }else{
+            btn.setEnabled(false);
+        }
+
+        type="鶏";
+        name="鶏";
+
+    }
+
+    public void COW(View view1) {
+        Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.ushi);
+        img.setImageBitmap(bmitem);
+        txt.setVisibility(View.VISIBLE);
+        txt.setText("生命の葉x5\n鈴x1\nミルクx1");
+        btn.setVisibility(View.VISIBLE);
+        img.setVisibility(View.VISIBLE);
+
+        item1="葉っぱ";
+        item2="骨";
+        item3="キノコ";
+
+        a0=5;
+        b0=1;
+        c0=1;
+
+        RealmQuery<Item> query1 = mRealm.where(Item.class);
+        query1.equalTo("name", item1);
+        RealmResults<Item> result = query1.findAll();
+        RealmQuery<Item> query2 = mRealm.where(Item.class);
+        query2.equalTo("name", item2);
+        RealmResults<Item> result2 = query2.findAll();
+        RealmQuery<Item> query3 = mRealm.where(Item.class);
+        query3.equalTo("name", item3);
+        RealmResults<Item> result3 = query3.findAll();
+
+        Item item1=result.get(0);
+        Item item2=result2.get(0);
+        Item item3=result3.get(0);
+
+        a1=Integer.valueOf(item1.getK()).intValue();
+        b1=Integer.valueOf(item2.getK()).intValue();
+        c1=Integer.valueOf(item3.getK()).intValue();
+
+        if(a1>=a0&&b1>=b0&&c1>=c0){
+            btn.setEnabled(true);
+        }else{
+            btn.setEnabled(false);
+        }
+
+        type="牛";
+        name="牛";
+
+    }
+
+    public void HORSE(View view1) {
+        Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.uma);
+        img.setImageBitmap(bmitem);
+        txt.setVisibility(View.VISIBLE);
+        txt.setText("生命の葉x20\n木馬x1");
+        btn.setVisibility(View.VISIBLE);
+        img.setVisibility(View.VISIBLE);
+
+        item1="葉っぱ";
+        item2="木馬";
+        item3="NULL";
+
+        a0=20;
+        b0=1;
+        c0=0;
+
+        RealmQuery<Item> query1 = mRealm.where(Item.class);
+        query1.equalTo("name", item1);
+        RealmResults<Item> result = query1.findAll();
+        RealmQuery<Item> query2 = mRealm.where(Item.class);
+        query2.equalTo("name", item2);
+        RealmResults<Item> result2 = query2.findAll();
+        RealmQuery<Item> query3 = mRealm.where(Item.class);
+        query3.equalTo("name", item3);
+        RealmResults<Item> result3 = query3.findAll();
+
+        Item item1=result.get(0);
+        Item item2=result2.get(0);
+        Item item3=result3.get(0);
+
+        a1=Integer.valueOf(item1.getK()).intValue();
+        b1=Integer.valueOf(item2.getK()).intValue();
+        c1=Integer.valueOf(item3.getK()).intValue();
+
+        if(a1>=a0&&b1>=b0&&c1>=c0){
+            btn.setEnabled(true);
+        }else{
+            btn.setEnabled(false);
+        }
+
+        type="馬";
+        name="馬";
 
     }
 
     public void onTradeTapped(View view){
+        RealmQuery<Item> query1 = mRealm.where(Item.class);
+        query1.equalTo("name", item1);
+        final RealmResults<Item> result1 = query1.findAll();
+        RealmQuery<Item> query2 = mRealm.where(Item.class);
+        query2.equalTo("name", item2);
+        final RealmResults<Item> result2 = query2.findAll();
+        RealmQuery<Item> query3 = mRealm.where(Item.class);
+        query3.equalTo("name", item3);
+        final RealmResults<Item> result3 = query3.findAll();
 
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Item item1=result1.get(0);
+                Item item2=result2.get(0);
+                Item item3=result3.get(0);
+
+                item1.setK(Integer.toString(a1-a0));
+                item2.setK(Integer.toString(b1-b0));
+                item3.setK(Integer.toString(c1-c0));
+
+                if(a1<a0||b1<b0||c1<c0){
+                    btn.setEnabled(false);
+                }
+
+            }
+        });
+
+
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Number maxId = realm.where(Animal.class).max("id");
+                long nextId = 1;
+                if (maxId != null) nextId = maxId.longValue() + 1;
+                Animal animal = realm.createObject(Animal.class, new Long(nextId));
+                animal.setName(name);
+                animal.setType(type);
+            }
+        });
+        Toast.makeText(this, "交換しました", Toast.LENGTH_SHORT).show();
+        finish();
+
+
+
+    }
+
+    public void onInventory(View view1) {
+        Intent intent = new Intent(getApplication(), InventoryActivity.class);
+        startActivity(intent);
+    }
+
+    public void onBack(View view1) {
+        Intent intent = new Intent(getApplication(), BokuActivity.class);
+        startActivity(intent);
     }
 }

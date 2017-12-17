@@ -12,7 +12,7 @@ import android.widget.ListView;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class DatabeseActivity extends AppCompatActivity {
+public class DatabaseActivity extends AppCompatActivity {
     private Realm mRealm;
     private ListView mListView;
     @Override
@@ -26,7 +26,7 @@ public class DatabeseActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(DatabeseActivity.this,ItemEditActivity.class));
+                startActivity(new Intent(DatabaseActivity.this,ItemEditActivity.class));
             }
         });
         mRealm = Realm.getDefaultInstance();
@@ -41,7 +41,7 @@ public class DatabeseActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent,View view,int position,long id){
                         Item item=(Item) parent.getItemAtPosition(position);
-                        startActivity(new Intent(DatabeseActivity.this,ItemEditActivity.class).putExtra("item_id",item.getId()));
+                        startActivity(new Intent(DatabaseActivity.this,ItemEditActivity.class).putExtra("item_id",item.getId()));
                     }
                 }
         );

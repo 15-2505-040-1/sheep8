@@ -12,6 +12,7 @@
         android:layout_height="60dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
+        android:onClick="CHICKEN"
         android:text="鶏"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sheepbtn" />
@@ -22,6 +23,7 @@
         android:layout_height="60dp"
         android:layout_marginLeft="135dp"
         android:layout_marginTop="4dp"
+        android:onClick="COW"
         android:text="牛"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blackbtn" />
@@ -32,6 +34,7 @@
         android:layout_height="60dp"
         android:layout_marginLeft="253dp"
         android:layout_marginTop="4dp"
+        android:onClick="HORSE"
         android:text="馬"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pigbtn" />
@@ -52,6 +55,7 @@
         android:layout_width="115dp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
+        android:onClick="BLACK"
         android:text="黒羊"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -64,6 +68,7 @@
         android:layout_height="60dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="10dp"
+        android:onClick="PIG"
         android:text="豚"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -86,19 +91,23 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="16dp"
+        android:onClick="onBack"
         android:text="戻る"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <ImageView
         android:id="@+id/animal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.707"
         app:srcCompat="@drawable/buyo" />
 
     <TextView
@@ -112,4 +121,17 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="318dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onInventory"
+        android:text="所持品"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horsebtn" />
 </android.support.constraint.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cloud.sheep2.DatabaseActivity">
+    tools:context="com.example.cloud.sheep2.AnimalActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,10 +20,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include
-        style="@style/Base.TextAppearance.AppCompat.Body1"
-        layout="@layout/content_item"
-        android:visibility="visible" />
+    <include layout="@layout/content_animal" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

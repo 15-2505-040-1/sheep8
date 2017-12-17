@@ -20,6 +20,8 @@ import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
+import static com.example.cloud.sheep2.R.id.item;
+
 public class ResultActivity extends AppCompatActivity {
 
 
@@ -61,10 +63,10 @@ public class ResultActivity extends AppCompatActivity {
 
         imbt.setEnabled(false);
 
-        n = r.nextInt(50);
+        n = r.nextInt(100);
         m = r2.nextInt(5);
 
-        if(n>=1 && n<25) {
+        if(n>=1 && n<20) {
             ImageButton item = (ImageButton) findViewById(R.id.item);
             Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.item1);
             item.setImageBitmap(bmitem);
@@ -93,45 +95,53 @@ public class ResultActivity extends AppCompatActivity {
                     }
                 });
             }
-        }else if(n>=25 && n<=50){
-            ImageButton item = (ImageButton)findViewById(R.id.item);
-            if(m>=1 && m<3) {
-                RealmQuery<Item> query = mRealm.where(Item.class);
-                query.equalTo("name", "キノコ");
-                RealmResults<Item> result = query.findAll();
-                if(result.size() > 0) {
-                    final RealmResults<Item> results = mRealm.where(Item.class).equalTo("name", "キノコ").findAll();
-                    mRealm.executeTransaction(new Realm.Transaction() {
-                        @Override
-                        public void execute(Realm realm) {
-                            Item item=results.first();
-                            item.setK(Integer.toString(Integer.valueOf(item.getK()).intValue()+1));
-                        }
-                    });
-                }
-                Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.kinoko);
-                item.setImageBitmap(bmitem);
-            }else if(m>=3 && m<=4){
+        }if(n>=20 && n<=50) {
+
+            ImageButton item = (ImageButton) findViewById(R.id.item);
+            RealmQuery<Item> query = mRealm.where(Item.class);
+            query.equalTo("name", "キノコ");
+            RealmResults<Item> result = query.findAll();
+            if (result.size() > 0) {
+                final RealmResults<Item> results = mRealm.where(Item.class).equalTo("name", "キノコ").findAll();
+                mRealm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        Item item = results.first();
+                        item.setK(Integer.toString(Integer.valueOf(item.getK()).intValue() + 1));
+                    }
+                });
+            }
+            Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.kinoko);
+            item.setImageBitmap(bmitem);
+        }
+            if(n>=20 && n<=50) {
+
+                ImageButton item = (ImageButton) findViewById(R.id.item);
                 RealmQuery<Item> query = mRealm.where(Item.class);
                 query.equalTo("name", "おもちゃ");
                 RealmResults<Item> result = query.findAll();
-                if(result.size() > 0) {
+                if (result.size() > 0) {
                     final RealmResults<Item> results = mRealm.where(Item.class).equalTo("name", "おもちゃ").findAll();
                     mRealm.executeTransaction(new Realm.Transaction() {
                         @Override
                         public void execute(Realm realm) {
-                            Item item=results.first();
-                            item.setK(Integer.toString(Integer.valueOf(item.getK()).intValue()+1));
+                            Item item = results.first();
+                            item.setK(Integer.toString(Integer.valueOf(item.getK()).intValue() + 1));
                         }
                     });
                 }
 
                 Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.omocha);
                 item.setImageBitmap(bmitem);
-            }else if(m==5){
+            }
+                if(n>=20 && n<=50){
+
+                    ImageButton item = (ImageButton) findViewById(R.id.item);
                 Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.vuvu);
                 item.setImageBitmap(bmitem);
             }
+
+        ImageButton item = (ImageButton) findViewById(R.id.item);
             alpha = new AlphaAnimation(0, 1);
             rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             scale1 = new ScaleAnimation(1, 2, 1, 2, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
@@ -144,7 +154,7 @@ public class ResultActivity extends AppCompatActivity {
             set.setFillAfter(true);
             item.startAnimation(set);
         }
-    }
+
 
     public void onGet(View view){
         Intent intent = new Intent(getApplication(), MainActivity.class);

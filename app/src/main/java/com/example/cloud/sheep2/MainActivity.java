@@ -161,6 +161,19 @@ public class MainActivity extends AppCompatActivity {
                     item.setK(Integer.toString(0));
                 }
             });
+
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Item.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Item item = realm.createObject(Item.class, new Long(nextId));
+                    item.setName("NULL");
+                    item.setDetail("NULL");
+                    item.setK("0");
+                }
+            });
         }
 
         }
@@ -208,10 +221,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void onTapped(View view1) {
-        Intent intent = new Intent(getApplication(), DatabeseActivity.class);
+    public void onItem(View view1) {
+        Intent intent = new Intent(getApplication(), DatabaseActivity.class);
         startActivity(intent);
     }
+
+    public void onAnimal(View view1) {
+        Intent intent = new Intent(getApplication(), AnimalActivity.class);
+        startActivity(intent);
+    }
+
+    public void onBoku(View view1) {
+        Intent intent = new Intent(getApplication(), BokuActivity.class);
+        startActivity(intent);
+    }
+
 
 }
 

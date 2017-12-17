@@ -2,4 +2,6 @@
     <string name="app_name">Sheep2</string>
     <string name="title_activity_item">ItemActivity</string>
     <string name="title_activity_item_edit">ItemEditActivity</string>
+    <string name="title_activity_animal">AnimalActivity</string>
+    <string name="title_activity_inventory">InventoryActivity</string>
 </resources>

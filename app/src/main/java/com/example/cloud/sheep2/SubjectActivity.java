@@ -25,7 +25,6 @@ public class SubjectActivity extends AppCompatActivity {
     public void onTapped(View view) {
         if(view==findViewById(sub1)){
             global.sub=1;
-
             Intent intent = new Intent(getApplication(), DifActivity.class);
             startActivity(intent);
         }
