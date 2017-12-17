@@ -1,5 +1,6 @@
 package com.example.cloud.sheep2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -93,6 +94,10 @@ public class BokuActivity extends AppCompatActivity {
 
         }
 
+    }
+    public void onShop(View view1) {
+        Intent intent = new Intent(getApplication(), ShopActivity.class);
+        startActivity(intent);
     }
 
 

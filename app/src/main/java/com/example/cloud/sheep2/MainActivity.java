@@ -60,8 +60,68 @@ public class MainActivity extends AppCompatActivity {
                     long nextId = 0;
                     if (maxId != null) nextId = maxId.longValue() + 1;
                     Item item = realm.createObject(Item.class, new Long(nextId));
-                    item.setName("おもちゃ");
-                    item.setDetail("おもちゃだよ");
+                    item.setName("木馬");
+                    item.setDetail("木馬だよ");
+                    item.setK(Integer.toString(0));
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Item.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Item item = realm.createObject(Item.class, new Long(nextId));
+                    item.setName("葉っぱ");
+                    item.setDetail("葉っぱだよ");
+                    item.setK(Integer.toString(0));
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Item.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Item item = realm.createObject(Item.class, new Long(nextId));
+                    item.setName("卵");
+                    item.setDetail("卵だよ");
+                    item.setK(Integer.toString(0));
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Item.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Item item = realm.createObject(Item.class, new Long(nextId));
+                    item.setName("鈴");
+                    item.setDetail("鈴だよ");
+                    item.setK(Integer.toString(0));
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Item.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Item item = realm.createObject(Item.class, new Long(nextId));
+                    item.setName("骨");
+                    item.setDetail("骨だよ");
+                    item.setK(Integer.toString(0));
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Item.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Item item = realm.createObject(Item.class, new Long(nextId));
+                    item.setName("ミルク");
+                    item.setDetail("ミルクだよ");
                     item.setK(Integer.toString(0));
                 }
             });
@@ -74,6 +134,30 @@ public class MainActivity extends AppCompatActivity {
                     Item item = realm.createObject(Item.class, new Long(nextId));
                     item.setName("ハエ");
                     item.setDetail("ハエだよ");
+                    item.setK(Integer.toString(0));
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Item.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Item item = realm.createObject(Item.class, new Long(nextId));
+                    item.setName("チョコ");
+                    item.setDetail("チョコだよ");
+                    item.setK(Integer.toString(0));
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Item.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Item item = realm.createObject(Item.class, new Long(nextId));
+                    item.setName("ラッパ");
+                    item.setDetail("ラッパだよ");
                     item.setK(Integer.toString(0));
                 }
             });
@@ -114,6 +198,15 @@ public class MainActivity extends AppCompatActivity {
         bt.startAnimation(set);
         Intent intent = new Intent(getApplication(), SubjectActivity.class);
         startActivity(intent);
+    }
+
+    public void onDetele(View view){
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.deleteAll();
+            }
+        });
     }
     public void onTapped(View view1) {
         Intent intent = new Intent(getApplication(), DatabeseActivity.class);

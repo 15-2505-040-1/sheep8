@@ -33,6 +33,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CanvasView" />
         <activity android:name=".SampleSurfaceHolderCallback" />
+        <activity android:name=".ShopActivity"></activity>
     </application>
 
 </manifest>
