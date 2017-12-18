@@ -3,8 +3,10 @@ package com.example.cloud.sheep2;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,34 +33,45 @@ public class ShopActivity extends AppCompatActivity {
     String type,name;
     int a0=0,b0=0,c0=0,a1,b1,c1;
 
+    ImageView huki;
+    TextView hukitxt;
+
+    MediaPlayer mMediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
+
+        mMediaPlayer= MediaPlayer.create(this,R.raw.nohohon);
+        mMediaPlayer.setLooping(true);
+        mMediaPlayer.start();
 
         mRealm=Realm.getDefaultInstance();
 
         img=(ImageView) findViewById(animal) ;
         txt=(TextView) findViewById(item);
         btn=(Button) findViewById(R.id.tradebtn);
+        huki=(ImageView) findViewById(R.id.huki);
+        hukitxt=(TextView) findViewById(R.id.hukitxt);
     }
 
     public void SHEEP(View view1) {
         txt.setVisibility(View.VISIBLE);
-        txt.setText("生命の葉x1\n骨x1");
+        txt.setText("生命の葉x1\n骨x1\nわたあめx1");
         btn.setVisibility(View.VISIBLE);
         img.setVisibility(View.VISIBLE);
 
-        Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.hitsuji2);
+        Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.hitsuji);
         img.setImageBitmap(bmitem);
 
         item1="葉っぱ";
         item2="骨";
-        item3="NULL";
+        item3="わたあめ";
 
         a0=1;
         b0=1;
-        c0=0;
+        c0=1;
 
         RealmQuery<Item> query1 = mRealm.where(Item.class);
         query1.equalTo("name", item1);
@@ -79,8 +92,12 @@ public class ShopActivity extends AppCompatActivity {
         c1=Integer.valueOf(item3.getK()).intValue();
 
         if(a1>=a0&&b1>=b0&&c1>=c0){
+            huki.setVisibility(View.INVISIBLE);
+            hukitxt.setVisibility(View.INVISIBLE);
             btn.setEnabled(true);
         }else{
+            huki.setVisibility(View.VISIBLE);
+            hukitxt.setVisibility(View.VISIBLE);
             btn.setEnabled(false);
         }
 
@@ -95,12 +112,12 @@ public class ShopActivity extends AppCompatActivity {
         Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.kurohiysuji);
         img.setImageBitmap(bmitem);
         txt.setVisibility(View.VISIBLE);
-        txt.setText("生命の葉x2\n骨x1\nチョコx1");
+        txt.setText("生命の葉x2\nわたあめx1\nチョコx1");
         btn.setVisibility(View.VISIBLE);
         img.setVisibility(View.VISIBLE);
 
         item1="葉っぱ";
-        item2="骨";
+        item2="わたあめ";
         item3="チョコ";
 
         a0=2;
@@ -126,8 +143,12 @@ public class ShopActivity extends AppCompatActivity {
         c1=Integer.valueOf(item3.getK()).intValue();
 
         if(a1>=a0&&b1>=b0&&c1>=c0){
+            huki.setVisibility(View.INVISIBLE);
+            hukitxt.setVisibility(View.INVISIBLE);
             btn.setEnabled(true);
         }else{
+            huki.setVisibility(View.VISIBLE);
+            hukitxt.setVisibility(View.VISIBLE);
             btn.setEnabled(false);
         }
         type="黒羊";
@@ -137,6 +158,8 @@ public class ShopActivity extends AppCompatActivity {
     }
 
     public void PIG(View view1) {
+        Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.buta);
+        img.setImageBitmap(bmitem);
         txt.setVisibility(View.VISIBLE);
         txt.setText("生命の葉x3\n骨x1\nキノコx1");
         btn.setVisibility(View.VISIBLE);
@@ -169,8 +192,12 @@ public class ShopActivity extends AppCompatActivity {
         c1=Integer.valueOf(item3.getK()).intValue();
 
         if(a1>=a0&&b1>=b0&&c1>=c0){
+            huki.setVisibility(View.INVISIBLE);
+            hukitxt.setVisibility(View.INVISIBLE);
             btn.setEnabled(true);
         }else{
+            huki.setVisibility(View.VISIBLE);
+            hukitxt.setVisibility(View.VISIBLE);
             btn.setEnabled(false);
         }
 
@@ -214,8 +241,12 @@ public class ShopActivity extends AppCompatActivity {
         c1=Integer.valueOf(item3.getK()).intValue();
 
         if(a1>=a0&&b1>=b0&&c1>=c0){
+            huki.setVisibility(View.INVISIBLE);
+            hukitxt.setVisibility(View.INVISIBLE);
             btn.setEnabled(true);
         }else{
+            huki.setVisibility(View.VISIBLE);
+            hukitxt.setVisibility(View.VISIBLE);
             btn.setEnabled(false);
         }
 
@@ -233,8 +264,8 @@ public class ShopActivity extends AppCompatActivity {
         img.setVisibility(View.VISIBLE);
 
         item1="葉っぱ";
-        item2="骨";
-        item3="キノコ";
+        item2="鈴";
+        item3="ミルク";
 
         a0=5;
         b0=1;
@@ -259,8 +290,12 @@ public class ShopActivity extends AppCompatActivity {
         c1=Integer.valueOf(item3.getK()).intValue();
 
         if(a1>=a0&&b1>=b0&&c1>=c0){
+            huki.setVisibility(View.INVISIBLE);
+            hukitxt.setVisibility(View.INVISIBLE);
             btn.setEnabled(true);
         }else{
+            huki.setVisibility(View.VISIBLE);
+            hukitxt.setVisibility(View.VISIBLE);
             btn.setEnabled(false);
         }
 
@@ -270,20 +305,21 @@ public class ShopActivity extends AppCompatActivity {
     }
 
     public void HORSE(View view1) {
+
         Bitmap bmitem = BitmapFactory.decodeResource(getResources(), R.drawable.uma);
         img.setImageBitmap(bmitem);
         txt.setVisibility(View.VISIBLE);
-        txt.setText("生命の葉x20\n木馬x1");
+        txt.setText("生命の葉x20\n木馬x1\n鈴x1");
         btn.setVisibility(View.VISIBLE);
         img.setVisibility(View.VISIBLE);
 
         item1="葉っぱ";
         item2="木馬";
-        item3="NULL";
+        item3="鈴";
 
         a0=20;
         b0=1;
-        c0=0;
+        c0=1;
 
         RealmQuery<Item> query1 = mRealm.where(Item.class);
         query1.equalTo("name", item1);
@@ -304,8 +340,12 @@ public class ShopActivity extends AppCompatActivity {
         c1=Integer.valueOf(item3.getK()).intValue();
 
         if(a1>=a0&&b1>=b0&&c1>=c0){
+            huki.setVisibility(View.INVISIBLE);
+            hukitxt.setVisibility(View.INVISIBLE);
             btn.setEnabled(true);
         }else{
+            huki.setVisibility(View.VISIBLE);
+            hukitxt.setVisibility(View.VISIBLE);
             btn.setEnabled(false);
         }
 
@@ -344,7 +384,7 @@ public class ShopActivity extends AppCompatActivity {
         });
 
 
-        mRealm.executeTransaction(new Realm.Transaction() {
+       /* mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 Number maxId = realm.where(Animal.class).max("id");
@@ -353,12 +393,30 @@ public class ShopActivity extends AppCompatActivity {
                 Animal animal = realm.createObject(Animal.class, new Long(nextId));
                 animal.setName(name);
                 animal.setType(type);
+
+                animal.setBo(true);
+
             }
         });
+        */
+        RealmQuery<Animal> query = mRealm.where(Animal.class);
+        query.equalTo("name", name);
+        RealmResults<Animal> result = query.findAll();
+        if (result.size() > 0) {
+            final RealmResults<Animal> results = mRealm.where(Animal.class).equalTo("name", name).findAll();
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Animal animal = results.first();
+                    animal.setBo(true);
+                }
+            });
+        }
         Toast.makeText(this, "交換しました", Toast.LENGTH_SHORT).show();
-        finish();
 
-
+mMediaPlayer.stop();
+            Intent intent = new Intent(getApplication(), BokuActivity.class);
+            startActivity(intent);
 
     }
 
@@ -368,7 +426,22 @@ public class ShopActivity extends AppCompatActivity {
     }
 
     public void onBack(View view1) {
+        mMediaPlayer.stop();
         Intent intent = new Intent(getApplication(), BokuActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getAction()==KeyEvent.ACTION_DOWN) {
+            switch (event.getKeyCode()) {
+                case KeyEvent.KEYCODE_BACK:
+                    // ダイアログ表示など特定の処理を行いたい場合はここに記述
+                    // 親クラスのdispatchKeyEvent()を呼び出さずにtrueを返す
+                    return true;
+            }
+        }
+        return super.dispatchKeyEvent(event);
+    }
+
 }

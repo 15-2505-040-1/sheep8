@@ -18,6 +18,7 @@ public class AnimalAdapter extends RealmBaseAdapter<Animal> {
         TextView name;
         TextView type;
         TextView id;
+        TextView bo;
     }
     public AnimalAdapter(@Nullable OrderedRealmCollection<Animal> data) {
         super(data);
@@ -31,7 +32,7 @@ public class AnimalAdapter extends RealmBaseAdapter<Animal> {
             convertView = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_2, parent, false);
             viewHolder = new ViewHolder();
             viewHolder.name = convertView.findViewById(android.R.id.text1);
-            viewHolder.id = convertView.findViewById(android.R.id.text2);
+            viewHolder.bo = convertView.findViewById(android.R.id.text2);
             convertView.setTag(viewHolder);
         }else{
             viewHolder=(ViewHolder)convertView.getTag();
@@ -39,7 +40,7 @@ public class AnimalAdapter extends RealmBaseAdapter<Animal> {
 
         Animal animal=adapterData.get(position);
         viewHolder.name.setText(animal.getName());
-        viewHolder.id.setText(toString().valueOf(animal.getId()));
+        viewHolder.bo.setText(toString().valueOf(animal.isBo()));
 
         return convertView;
     }

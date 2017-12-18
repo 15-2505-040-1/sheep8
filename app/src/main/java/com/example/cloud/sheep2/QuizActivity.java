@@ -1,9 +1,11 @@
 package com.example.cloud.sheep2;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -39,6 +41,7 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
     Global global;
     Thread thread = null;
 
+    MediaPlayer mMediaPlayer;
 
     private AlphaAnimation alpha1;
     private AlphaAnimation alpha2;
@@ -117,9 +120,9 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
 
     public class Gameover implements Runnable{
         public void run() {
-            Intent intent = new Intent(QuizActivity.this, MainActivity.class);
+            mMediaPlayer.stop();
+            Intent intent = new Intent(QuizActivity.this, GameoverActivity.class);
             startActivity(intent);
-            QuizActivity.this.finish();
         }
     }
 
@@ -133,6 +136,8 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
 
     public class Clear implements Runnable{
         public void run(){
+
+            mMediaPlayer.stop();
             Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
             startActivity(intent);
         }
@@ -143,6 +148,10 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        mMediaPlayer= MediaPlayer.create(this,R.raw.darkmatter);
+        mMediaPlayer.setLooping(true);
+        mMediaPlayer.start();
 
         global=(Global) this.getApplication();
         // 画面上のウィジェットを取得しておく
@@ -206,7 +215,6 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
             }
             if (global.m == 2) {
                 ImageView img = (ImageView)findViewById(R.id.monster1);
-                ImageView imgb = (ImageView)findViewById(R.id.back1);
           /*  Bitmap bmp1 = BitmapFactory.decodeResource(getResources(), R.drawable.monster2);
             Bitmap bmp2 = BitmapFactory.decodeResource(getResources(), R.drawable.back2);
             img.setImageBitmap(bmp1);
@@ -264,14 +272,15 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                     next.setVisibility(View.INVISIBLE);
                 }
             }
-            if (global.x == 3) {
+            if (global.y == 3) {
+                for (int i = 0; i < buttons.length; i++) {
+                    buttons[i].setText(quizp3.choices[i]);
+                    buttons[i].setTextColor(0xFF000000);
+                }
                 if (quizp3 != null) {
                     tv_num.setText(quizp3.q_string);
                     ques_num.setText(quizp3.question);
                     imageView.setImageResource(quizp3.image);
-                    for (int i = 0; i < buttons.length; i++) {
-                        buttons[i].setText(quizp3.choices[i]);
-                    }
                     result.setText("");
 
                     next.setVisibility(View.INVISIBLE);
@@ -349,6 +358,8 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
 
                         }
                         else {
+
+                            mMediaPlayer.stop();
                             finish();
                         }
 
@@ -438,6 +449,8 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
 
                         }
                         else {
+
+                            mMediaPlayer.stop();
                             finish();
                         }
 
@@ -456,14 +469,72 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                     }
                 }
             }
-            if (global.x == 3) {
+            if (global.y== 3) {
                 if (view.getId() == buttons[i].getId()) {
+
                     if (i == quizp3.answer_index) {
-                        result.setText("正解!");
-                        next.setVisibility(View.VISIBLE);
+                        AnimationSet s1 = new AnimationSet(true);
+                        al1 = new AlphaAnimation(0, 1);
+                        s1.addAnimation(al1);
+                        s1.setDuration(900);
+                        s1.setInterpolator(new CycleInterpolator(3));
+                        maru.startAnimation(s1);
+
+                        if (quizp3 != null) {
+
+                            quizp3 = Physques3.getQuiz(quizp3.q_num + 1);
+                            hdl2.postDelayed(new Seikai(), 1400);
+                            q++;
+                        }
+                        if(q==1){
+                            hdl.postDelayed(new Clear(),1000);
+                        }
+
                     } else {
-                        result.setText("不正解...");
-                        next.setVisibility(View.INVISIBLE);
+
+
+                        if(judge==true) {
+                            float q = x;
+                            x = y;
+                            y = q;
+                            n = l;
+                            set1.setFillAfter(false);
+                            set2.setFillAfter(false);
+                            //    q = a;
+                            //    a = b;
+                            //    b = q;
+                        }
+                        hdl.postDelayed(new Huseikai(),1000);
+                        judge = false;
+                        AnimationSet s1 = new AnimationSet(true);
+                        al1 = new AlphaAnimation(0, 1);
+                        //al1.setInterpolator(new CycleInterpolator(1));
+                        //rotate1.setRepeatCount(Animation.INFINITE);
+
+                        s1.addAnimation(al1);
+                        s1.setDuration(900);
+                        s1.setInterpolator(new CycleInterpolator(3));
+
+                        batu.startAnimation(s1);
+                        g++;
+
+                        buttons[quizp3.answer_index].setTextColor(0xFFFF4040);
+                        if(g==3){
+                            clear=false;
+                            hdl.postDelayed(new Gameover(), 2000);
+                        }
+                        if (quizp3 != null) {
+
+                            quizp3 = Physques3.getQuiz(quizp3.q_num + 1);
+                            hdl2.postDelayed(new Seikai(), 1200);
+
+                        }
+                        else {
+
+                            mMediaPlayer.stop();
+                            finish();
+                        }
+
                     }
                 }
             }
@@ -477,6 +548,8 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                 show();
             }
             else {
+
+                mMediaPlayer.stop();
                 finish(); // 最後の問題の時は移る先がないので一旦MainActivityに戻す
             }
         }
@@ -486,6 +559,8 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                 show();
             }
             else {
+
+                mMediaPlayer.stop();
                 finish(); // 最後の問題の時は移る先がないので一旦MainActivityに戻す
             }
         }
@@ -495,6 +570,8 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                 show();
             }
             else {
+
+                mMediaPlayer.stop();
                 finish(); // 最後の問題の時は移る先がないので一旦MainActivityに戻す
             }
         }
@@ -504,6 +581,8 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                 show();
             }
             else {
+
+                mMediaPlayer.stop();
                 finish(); // 最後の問題の時は移る先がないので一旦MainActivityに戻す
             }
         }
@@ -513,17 +592,39 @@ public class QuizActivity extends AppCompatActivity {private TextView tv_num;
                 show();
             }
             else {
+
+                mMediaPlayer.stop();
                 finish(); // 最後の問題の時は移る先がないので一旦MainActivityに戻す
             }
         }
-        else if(global.x==3){
+        else if(global.y==3){
             if (quizp3 != null) {
                 quizp3 = Physques3.getQuiz(quizp3.q_num + 1);
                 show();
             }
             else {
+
+                mMediaPlayer.stop();
                 finish(); // 最後の問題の時は移る先がないので一旦MainActivityに戻す
             }
         }
+    }
+    public void back(View view){
+        mMediaPlayer.stop();
+            Intent intent = new Intent(QuizActivity.this, SubjectActivity.class);
+            startActivity(intent);
+
+    }
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getAction()==KeyEvent.ACTION_DOWN) {
+            switch (event.getKeyCode()) {
+                case KeyEvent.KEYCODE_BACK:
+                    // ダイアログ表示など特定の処理を行いたい場合はここに記述
+                    // 親クラスのdispatchKeyEvent()を呼び出さずにtrueを返す
+                    return true;
+            }
+        }
+        return super.dispatchKeyEvent(event);
     }
 }

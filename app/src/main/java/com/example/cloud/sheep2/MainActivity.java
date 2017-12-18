@@ -1,10 +1,10 @@
 package com.example.cloud.sheep2;
 
 import android.content.Intent;
-import android.media.AudioManager;
-import android.media.SoundPool;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -23,17 +23,25 @@ public class MainActivity extends AppCompatActivity {
     private ScaleAnimation scale;
     private RotateAnimation rotate;
     AnimationSet set=new AnimationSet(true);
-    private SoundPool mSoundPool;
-    private int mSoundId;
     private Realm mRealm;
+    public MediaPlayer mMediaPlayer;
+
+    Global global;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*
         mSoundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-        mSoundId = mSoundPool.load(getApplicationContext(), R.raw.music, 0);
+        mSoundId = mSoundPool.load(getApplicationContext(), R.raw.nohohon, 0);
+        */
         // ((TextView)findViewById(textView)).setTypeface(Typeface.createFromAsset(getAssets(), "数式フォントver1.1.ttf"));
+        mMediaPlayer= MediaPlayer.create(this,R.raw.haru);
+        mMediaPlayer.setLooping(true);
+        mMediaPlayer.start();
+
         mRealm = Realm.getDefaultInstance();
         RealmQuery<Item> query = mRealm.where(Item.class);
         query.equalTo("name", "キノコ");
@@ -49,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     if (maxId != null) nextId = maxId.longValue() + 1;
                     Item item = realm.createObject(Item.class, new Long(nextId));
                     item.setName("キノコ");
-                    item.setDetail("キノコだよ");
+                    item.setDetail("繁殖力の高いキノコ。\n食べても体が大きくなったりはしない。");
                     item.setK(Integer.toString(0));
                 }
             });
@@ -61,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     if (maxId != null) nextId = maxId.longValue() + 1;
                     Item item = realm.createObject(Item.class, new Long(nextId));
                     item.setName("木馬");
-                    item.setDetail("木馬だよ");
+                    item.setDetail("アインシュタインが3歳の頃に使っていたといわれる木馬。\n実は三角木馬。");
                     item.setK(Integer.toString(0));
                 }
             });
@@ -73,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     if (maxId != null) nextId = maxId.longValue() + 1;
                     Item item = realm.createObject(Item.class, new Long(nextId));
                     item.setName("葉っぱ");
-                    item.setDetail("葉っぱだよ");
+                    item.setDetail("ただの葉っぱです。\n使い道は特にない。");
                     item.setK(Integer.toString(0));
                 }
             });
@@ -85,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     if (maxId != null) nextId = maxId.longValue() + 1;
                     Item item = realm.createObject(Item.class, new Long(nextId));
                     item.setName("卵");
-                    item.setDetail("卵だよ");
+                    item.setDetail("エチオピアで拾ってきたが、何の卵かはわからない。\n若干腐乱臭がする。");
                     item.setK(Integer.toString(0));
                 }
             });
@@ -97,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     if (maxId != null) nextId = maxId.longValue() + 1;
                     Item item = realm.createObject(Item.class, new Long(nextId));
                     item.setName("鈴");
-                    item.setDetail("鈴だよ");
+                    item.setDetail("某人間型ロボットから引きちぎってきた代物。\nオークションにでも出すか。");
                     item.setK(Integer.toString(0));
                 }
             });
@@ -109,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     if (maxId != null) nextId = maxId.longValue() + 1;
                     Item item = realm.createObject(Item.class, new Long(nextId));
                     item.setName("骨");
-                    item.setDetail("骨だよ");
+                    item.setDetail("じぃちゃんの骨。\n骨太である。");
                     item.setK(Integer.toString(0));
                 }
             });
@@ -121,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                     if (maxId != null) nextId = maxId.longValue() + 1;
                     Item item = realm.createObject(Item.class, new Long(nextId));
                     item.setName("ミルク");
-                    item.setDetail("ミルクだよ");
+                    item.setDetail("カルシウム豊富で骨が丈夫になりそうだ。\nじぃちゃんがよく飲んでいた。");
                     item.setK(Integer.toString(0));
                 }
             });
@@ -132,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
                     long nextId = 0;
                     if (maxId != null) nextId = maxId.longValue() + 1;
                     Item item = realm.createObject(Item.class, new Long(nextId));
-                    item.setName("ハエ");
-                    item.setDetail("ハエだよ");
+                    item.setName("ネズミ");
+                    item.setDetail("哺乳類ネズミ目（齧歯目）の数科の総称である。ネズミのほとんどが夜行性である。また、ネズミの門歯は一生伸び続けるというげっ歯類の特徴を持っているため、常に何か硬いものをよくk(ry\n結論、出っ歯である。");
                     item.setK(Integer.toString(0));
                 }
             });
@@ -145,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                     if (maxId != null) nextId = maxId.longValue() + 1;
                     Item item = realm.createObject(Item.class, new Long(nextId));
                     item.setName("チョコ");
-                    item.setDetail("チョコだよ");
+                    item.setDetail("水1000ccにこのルーを1個溶かしたらおいしいカレーがでｋ。。。あ、これチョコじゃん。");
                     item.setK(Integer.toString(0));
                 }
             });
@@ -157,11 +165,10 @@ public class MainActivity extends AppCompatActivity {
                     if (maxId != null) nextId = maxId.longValue() + 1;
                     Item item = realm.createObject(Item.class, new Long(nextId));
                     item.setName("ラッパ");
-                    item.setDetail("ラッパだよ");
+                    item.setDetail("パンツ");
                     item.setK(Integer.toString(0));
                 }
             });
-
             mRealm.executeTransaction(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
@@ -169,34 +176,93 @@ public class MainActivity extends AppCompatActivity {
                     long nextId = 0;
                     if (maxId != null) nextId = maxId.longValue() + 1;
                     Item item = realm.createObject(Item.class, new Long(nextId));
-                    item.setName("NULL");
-                    item.setDetail("NULL");
+                    item.setName("わたあめ");
+                    item.setDetail("じぃちゃんが嫌いなもの。カルシウムには関係ないらしい。");
                     item.setK("0");
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Animal.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Animal animal = realm.createObject(Animal.class, new Long(nextId));
+                    animal.setName("羊");
+                    animal.setDetail("羊だよ");
+                    animal.setBo(false);
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Animal.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Animal animal = realm.createObject(Animal.class, new Long(nextId));
+                    animal.setName("黒羊");
+                    animal.setDetail("黒羊だよ");
+                    animal.setBo(false);
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Animal.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Animal animal = realm.createObject(Animal.class, new Long(nextId));
+                    animal.setName("豚");
+                    animal.setDetail("豚だよ");
+                    animal.setBo(false);
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Animal.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Animal animal = realm.createObject(Animal.class, new Long(nextId));
+                    animal.setName("鶏");
+                    animal.setDetail("鶏だよ");
+                    animal.setBo(false);
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Animal.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Animal animal = realm.createObject(Animal.class, new Long(nextId));
+                    animal.setName("牛");
+                    animal.setDetail("牛だよ");
+                    animal.setBo(false);
+                }
+            });
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Number maxId = realm.where(Animal.class).max("id");
+                    long nextId = 0;
+                    if (maxId != null) nextId = maxId.longValue() + 1;
+                    Animal animal = realm.createObject(Animal.class, new Long(nextId));
+                    animal.setName("馬");
+                    animal.setDetail("馬だよ");
+                    animal.setBo(false);
                 }
             });
         }
 
         }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // 予め音声データを読み込む
 
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // リリース
-        mSoundPool.release();
-    }
-    private void playFromSoundPool() {
-        // 再生
-    }
 
 
     public void openQuiz(View view1) {
+        mMediaPlayer.stop();
 
-        mSoundPool.play(mSoundId, 1.0F, 1.0F, 0, 0, 1.0F);
+//        mSoundPool.play(mSoundId, 1.0F, 1.0F, 0, 0, 1.0F);
         Button bt = (Button)findViewById(R.id.button);
         alpha=new AlphaAnimation(1,0);
         scale=new ScaleAnimation(1,0,1,0, Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
@@ -232,8 +298,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBoku(View view1) {
+        mMediaPlayer.stop();
         Intent intent = new Intent(getApplication(), BokuActivity.class);
         startActivity(intent);
+    }
+    public void onInventory(View view1) {
+        Intent intent = new Intent(getApplication(), InventoryActivity.class);
+        startActivity(intent);
+    }
+
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getAction()==KeyEvent.ACTION_DOWN) {
+            switch (event.getKeyCode()) {
+                case KeyEvent.KEYCODE_BACK:
+                    // ダイアログ表示など特定の処理を行いたい場合はここに記述
+                    // 親クラスのdispatchKeyEvent()を呼び出さずにtrueを返す
+                    return true;
+            }
+        }
+        return super.dispatchKeyEvent(event);
     }
 
 

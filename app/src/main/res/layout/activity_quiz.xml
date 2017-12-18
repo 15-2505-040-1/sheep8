@@ -6,25 +6,37 @@
     android:layout_height="match_parent"
     tools:context="com.example.cloud.sheep2.QuizActivity">
 
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="343dp"
+        android:backgroundTint="#ffffffff"
+        android:onClick="back"
+        android:text="戻る"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
-        android:id="@+id/back1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
+        android:id="@+id/imageView3"
+        android:layout_width="400dp"
+        android:layout_height="550dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/back1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_monster2" />
 
     <LinearLayout
         android:layout_width="368dp"
         android:layout_height="245dp"
+        android:layout_marginBottom="16dp"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
         <TextView
@@ -58,6 +70,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="#ffffffff"
                     android:onClick="answer"
                     android:text="選択肢1"
                     android:textSize="20sp" />
@@ -67,6 +80,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="#ffffffff"
                     android:onClick="answer"
                     android:text="選択肢2"
                     android:textSize="20sp" />
@@ -81,6 +95,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="#ffffffff"
                     android:onClick="answer"
                     android:text="選択肢3"
                     android:textSize="20sp" />
@@ -90,6 +105,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="#ffffffff"
                     android:onClick="answer"
                     android:text="選択肢4"
                     android:textSize="20sp" />
@@ -97,39 +113,6 @@
         </TableLayout>
 
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/monster1"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="233dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/monster1" />
-
-    <ImageView
-        android:id="@+id/maru"
-        android:layout_width="245dp"
-        android:layout_height="352dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/maru" />
-
-    <ImageView
-        android:id="@+id/batu"
-        android:layout_width="245dp"
-        android:layout_height="352dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/batu" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -166,12 +149,46 @@
             android:id="@+id/question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@android:color/background_light"
+            android:backgroundTint="@android:color/background_light"
             android:padding="5dp"
             android:text="問題文"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="17sp" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/maru"
+        android:layout_width="245dp"
+        android:layout_height="352dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/maru" />
+
+    <ImageView
+        android:id="@+id/batu"
+        android:layout_width="245dp"
+        android:layout_height="352dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/batu" />
+
+    <ImageView
+        android:id="@+id/monster1"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="233dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/monster1" />
 
 </android.support.constraint.ConstraintLayout>

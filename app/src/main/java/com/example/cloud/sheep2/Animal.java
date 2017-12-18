@@ -13,6 +13,15 @@ public class Animal extends RealmObject {
     private String type;
     private String name;
     private String detail;
+    private boolean bo;
+
+    public boolean isBo() {
+        return bo;
+    }
+
+    public void setBo(boolean bo) {
+        this.bo = bo;
+    }
 
     public String getType() {
         return type;
